@@ -7,17 +7,13 @@ import matplotlib.pyplot as plt
 
 
 #* Select numerical parameters (time step, grid spacing, etc.).
-method = input('Choose a numerical method, 1) FTCS; 2) Lax; 3) Lax-Wendroff :')
-N = int(input('Enter the number of grid points: '))
-L = 400.      # System size (meters)
-h = L/N       # Grid spacing for periodic boundary conditions
+N = 600
+L = 1200.      # System size (meters)
+h = 2       # Grid spacing for periodic boundary conditions
 v_max = 25.    # Maximum car speed (m/s)
-print('Suggested timestep is ', h/v_max)
-tau = float(input('Enter time step (tau): '))
-print('Last car starts moving after ', (L/4)/(v_max*tau), 'steps')
-nstep = int(input('Enter number of steps: '))
+tau = h/v_max
+nstep = 1500
 coeff = tau/(2*h)          # Coefficient used by all schemes
-coefflw = tau**2/(2*h**2)  # Coefficient used by Lax-Wendroff
 
 #* Set initial and boundary conditions
 rho_max = 1.0                   # Maximum density
@@ -54,15 +50,18 @@ for istep in range(nstep) :
   
     #* Compute new values of density using  
     #  FTCS, Lax or Lax-Wendroff method.
-    if method == 1 :      ### FTCS method ###
-        rho[:] = rho[:] - coeff*( Flow[ip] - Flow[im] )
-    elif method == 2 :    ### Lax method ###
-        rho[:] = .5*( rho[ip] + rho[im] ) - coeff*( Flow[ip] - Flow[im] )
-    else :                ### Lax-Wendroff method ###
-        cp[:] = v_max*(1 - (rho[ip]+rho[:])/rho_max);
-        cm[:] = v_max*(1 - (rho[:]+rho[im])/rho_max);
-        rho[:] = rho[:] - coeff*( Flow[ip] - Flow[im] ) + coefflw*(
-            cp[:]*(Flow[ip]-Flow[:]) - cm[:]*(Flow[:]-Flow[im]) )
+
+    rho[:] = .5*( rho[ip] + rho[im] ) - coeff*( Flow[ip] - Flow[im] )
+
+    #if method == 1 :      ### FTCS method ###
+    #    rho[:] = rho[:] - coeff*( Flow[ip] - Flow[im] )
+    #elif method == 2 :    ### Lax method ###
+    #    rho[:] = .5*( rho[ip] + rho[im] ) - coeff*( Flow[ip] - Flow[im] )
+    #else :                ### Lax-Wendroff method ###
+    #    cp[:] = v_max*(1 - (rho[ip]+rho[:])/rho_max);
+    #    cm[:] = v_max*(1 - (rho[:]+rho[im])/rho_max);
+    #    rho[:] = rho[:] - coeff*( Flow[ip] - Flow[im] ) + coefflw*(
+    #        cp[:]*(Flow[ip]-Flow[:]) - cm[:]*(Flow[:]-Flow[im]) )
 
     #* Record density for plotting.
     rplot[:,iplot] = np.copy(rho)
