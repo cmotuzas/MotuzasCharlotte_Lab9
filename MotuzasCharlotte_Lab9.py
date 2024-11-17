@@ -38,7 +38,6 @@ def traffic_solution(N,L,v_max,nstep,rho_max):
     rplot[:,0] = np.copy(rho)   # Record the initial state
     tplot[0] = 0                # Record the initial time (t=0)
 
-
     #* Loop over desired number of steps.
     for istep in range(nstep) :
 
@@ -82,4 +81,14 @@ for i in range(2):
         ax[i,j].set_ylim([-0.1,1.1])
         fig.suptitle('Snapshots')
         tstep = tstep+500 # increasing time step selected for subplotting
+plt.show()
+
+plt.plot(xplot,rplot[:,0],
+         xplot,rplot[:,500],
+         xplot,rplot[:,1000],
+         xplot,rplot[:,1500])
+plt.xlabel('x')
+plt.ylabel('Density $\\rho$')
+#plt.legend('t = 0 s','t = 40 s', 't = 80 s','t = 120 s')
+plt.title('Density Snapshots')
 plt.show()
