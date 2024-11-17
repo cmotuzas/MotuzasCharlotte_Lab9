@@ -60,6 +60,19 @@ nstep = 1500 # number of time steps
 rho_max = 1 # maximum density 
 xplot, rplot, tplot, iplot = traffic_solution(N,L,v_max,nstep,rho_max) # using defined function 
 
+#from matplotlib import cm
+#from mpl_toolkits.mplot3d import Axes3D
+#fig = plt.figure()
+#ax = fig.add_subplot(projection='3d')
+#Tp, Xp = np.meshgrid(tplot[0:iplot], xplot)
+#ax.plot_surface(Tp, Xp, rplot[:,0:iplot], rstride=1, cstride=1, cmap=cm.gray)
+#ax.view_init(elev=30., azim=10.)
+#ax.set_xlabel('t')
+#ax.set_ylabel('x')
+#ax.set_zlabel('rho')
+#ax.set_title('Density versus position and time')
+#plt.show()
+
 #* Graph contours of density versus position and time.
 levels = np.linspace(0., 1., num=11) # change num for more or less contours 
 ct = plt.contour(xplot, tplot, np.flipud(np.rot90(rplot)), levels)  # plotting contour plot
@@ -92,3 +105,10 @@ plt.ylabel('Density $\\rho$')
 plt.legend(['t = 0 s','t = 40 s', 't = 80 s','t = 120 s'])
 plt.title('Density Snapshots')
 plt.show()
+
+# in reference to  your contour plot, does a shock front seem to form in the flow? If so, why 
+# and at what time does it first appear? In what direction does the front propagate? 
+
+# From the initial conditions, an initial shockwave from 0 to -300 generates a wave that propagates in the positive x direction as time continues 
+# This occurs at t = 0s, or immediately. A second wave follows at approximately 25 seconds, which also appears to generally trend towards the positive x direction. 
+
