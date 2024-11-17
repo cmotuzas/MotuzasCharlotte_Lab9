@@ -76,8 +76,8 @@ for i in range(2):
         ax[i,j].plot(xplot,rplot[:,tstep])
         ax[i,j].set_xlabel('x')
         ax[i,j].set_ylabel('Density $\\rho$')
-        ax[i,j].text(250,0.6,"t = {}s".format((500*(i+j)-500)*(L/N)/v_max))
-        ax[i,j].set_ylim([0,1])
+        ax[i,j].text(250,0.6,"t = {}s".format((tstep)*(L/N)/v_max))
+        ax[i,j].set_ylim([-0.1,1.1])
         fig.suptitle('Snapshots')
         tstep = tstep+500
 plt.show()
