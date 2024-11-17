@@ -64,6 +64,11 @@ plt.show()
 
 # Snapshot Plotting 
 
-plt.plot(xplot,rplot[:,0])
+fig, ax = plt.subplots(2,2)
+ax[0,0].plot(xplot,rplot[:,0])
+ax[0,0].set_xlabel('x')
+ax[0,0].set_ylabel('Density $\\rho$')
+ax[0,0].text(250,0.6,"t = 0s")
+fig.suptitle('Snapshots')
 plt.show()
 
