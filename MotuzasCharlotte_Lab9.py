@@ -54,32 +54,32 @@ def traffic_solution(N,L,v_max,nstep,rho_max):
         iplot += 1
     return xplot, rplot, tplot, iplot
 
-L = 1200
-N = 600
-v_max = 25
-nstep = 1500
-rho_max = 1
-xplot, rplot, tplot, iplot = traffic_solution(N,L,v_max,nstep,rho_max)
+L = 1200 # bar length 
+N = 600 # number of grid spaces
+v_max = 25 # max velocity 
+nstep = 1500 # number of time steps 
+rho_max = 1 # maximum density 
+xplot, rplot, tplot, iplot = traffic_solution(N,L,v_max,nstep,rho_max) # using defined function 
 
 #* Graph contours of density versus position and time.
 levels = np.linspace(0., 1., num=11) # change num for more or less contours 
-ct = plt.contour(xplot, tplot, np.flipud(np.rot90(rplot)), levels) 
-plt.clabel(ct, fmt='%1.2f') 
-plt.xlabel('x')
-plt.ylabel('time (s)')
-plt.title('Density contours')
+ct = plt.contour(xplot, tplot, np.flipud(np.rot90(rplot)), levels)  # plotting contour plot
+plt.clabel(ct, fmt='%1.2f')  # colorbar label 
+plt.xlabel('x') # x grid space label 
+plt.ylabel('time (s)') 
+plt.title('Density contours') 
 plt.show()
 
 # Snapshot Plotting 
-fig, ax = plt.subplots(2,2)
-tstep = 0
+fig, ax = plt.subplots(2,2) # generating subplots
+tstep = 0 # initializing for time step 
 for i in range(2): 
     for j in range(2): 
-        ax[i,j].plot(xplot,rplot[:,tstep])
+        ax[i,j].plot(xplot,rplot[:,tstep]) # selecting one density given initial timestep 
         ax[i,j].set_xlabel('x')
-        ax[i,j].set_ylabel('Density $\\rho$')
-        ax[i,j].text(210,0.6,"t = {} s".format((tstep)*(L/N)/v_max))
+        ax[i,j].set_ylabel('Density $\\rho$') # ylabel 
+        ax[i,j].text(210,0.6,"t = {} s".format((tstep)*(L/N)/v_max)) # adding label on plot 
         ax[i,j].set_ylim([-0.1,1.1])
         fig.suptitle('Snapshots')
-        tstep = tstep+500
+        tstep = tstep+500 # increasing time step selected for subplotting
 plt.show()
