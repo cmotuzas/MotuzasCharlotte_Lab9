@@ -70,18 +70,18 @@ plt.title('Density contours')
 plt.show()
 
 # Snapshot Plotting 
-fig, ax = plt.subplots(2,2) # generating subplots
-tstep = 0 # initializing for time step 
-for i in range(2): 
-    for j in range(2): 
-        ax[i,j].plot(xplot,rplot[:,tstep]) # selecting one density given initial timestep 
-        ax[i,j].set_xlabel('x')
-        ax[i,j].set_ylabel('Density $\\rho$') # ylabel 
-        ax[i,j].text(210,0.6,"t = {} s".format((tstep)*(L/N)/v_max)) # adding label on plot 
-        ax[i,j].set_ylim([-0.1,1.1])
-        fig.suptitle('Snapshots')
-        tstep = tstep+500 # increasing time step selected for subplotting
-plt.show()
+#fig, ax = plt.subplots(2,2) # generating subplots
+#tstep = 0 # initializing for time step 
+#for i in range(2): 
+#    for j in range(2): 
+#        ax[i,j].plot(xplot,rplot[:,tstep]) # selecting one density given initial timestep 
+#        ax[i,j].set_xlabel('x')
+#        ax[i,j].set_ylabel('Density $\\rho$') # ylabel 
+#        ax[i,j].text(210,0.6,"t = {} s".format((tstep)*(L/N)/v_max)) # adding label on plot 
+#        ax[i,j].set_ylim([-0.1,1.1])
+#        fig.suptitle('Snapshots')
+#        tstep = tstep+500 # increasing time step selected for subplotting
+#plt.show()
 
 plt.plot(xplot,rplot[:,0],
          xplot,rplot[:,500],
@@ -89,6 +89,6 @@ plt.plot(xplot,rplot[:,0],
          xplot,rplot[:,1500])
 plt.xlabel('x')
 plt.ylabel('Density $\\rho$')
-#plt.legend('t = 0 s','t = 40 s', 't = 80 s','t = 120 s')
+plt.legend(['t = 0 s','t = 40 s', 't = 80 s','t = 120 s'])
 plt.title('Density Snapshots')
 plt.show()
