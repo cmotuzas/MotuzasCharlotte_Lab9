@@ -53,27 +53,17 @@ def traffic_solution(N,L,v_max,nstep,rho_max):
 
 xplot, rplot, tplot, iplot = traffic_solution(600,1200,25,1500,1)
 
-#* Graph density versus position and time as wire-mesh plot
-from matplotlib import cm
-from mpl_toolkits.mplot3d import Axes3D
-
-#fig = plt.figure()
-#ax = fig.add_subplot(projection='3d')
-#Tp, Xp = np.meshgrid(tplot[0:iplot], xplot)
-#ax.plot_surface(Tp, Xp, rplot[:,0:iplot], rstride=1, cstride=1, cmap=cm.gray)
-#ax.view_init(elev=30., azim=10.)
-#ax.set_xlabel('t')
-#ax.set_ylabel('x')
-#ax.set_zlabel('rho')
-#ax.set_title('Density versus position and time')
-#plt.show()
-
 #* Graph contours of density versus position and time.
-levels = np.linspace(0., 1., num=15) 
+levels = np.linspace(0., 1., num=11) # change num for more or less contours 
 ct = plt.contour(xplot, tplot, np.flipud(np.rot90(rplot)), levels) 
 plt.clabel(ct, fmt='%1.2f') 
 plt.xlabel('x')
 plt.ylabel('time')
 plt.title('Density contours')
+plt.show()
+
+# Snapshot Plotting 
+
+plt.plot(xplot,rplot[:,0])
 plt.show()
 
