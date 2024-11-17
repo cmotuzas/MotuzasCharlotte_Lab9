@@ -51,7 +51,13 @@ def traffic_solution(N,L,v_max,nstep,rho_max):
         iplot += 1
     return xplot, rplot, tplot, iplot
 
-xplot, rplot, tplot, iplot = traffic_solution(600,1200,25,1500,1)
+
+L = 1200
+N = 600
+v_max = 25
+nstep = 1500
+rho_max = 1
+xplot, rplot, tplot, iplot = traffic_solution(N,L,v_max,nstep,rho_max)
 
 #* Graph contours of density versus position and time.
 levels = np.linspace(0., 1., num=11) # change num for more or less contours 
@@ -63,12 +69,13 @@ plt.title('Density contours')
 plt.show()
 
 # Snapshot Plotting 
-
 fig, ax = plt.subplots(2,2)
-ax[0,0].plot(xplot,rplot[:,0])
-ax[0,0].set_xlabel('x')
-ax[0,0].set_ylabel('Density $\\rho$')
-ax[0,0].text(250,0.6,"t = 0s")
-fig.suptitle('Snapshots')
-plt.show()
+for i in range(2): 
+    for j in range(2): 
+        ax[i,j].plot(xplot,rplot[:,500*(i+j)-500])
+        ax[i,j].set_xlabel('x')
+        ax[i,j].set_ylabel('Density $\\rho$')
+        ax[i,j].text(250,0.6,"t = {}s".format((500*(i+j)-500)*(L/N)/v_max))
+        fig.suptitle('Snapshots')
+        plt.show()
 
