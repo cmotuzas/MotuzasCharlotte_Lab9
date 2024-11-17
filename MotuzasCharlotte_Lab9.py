@@ -1,5 +1,5 @@
-# traffic - Program to solve the generalized Burger  
-# equation for the traffic at a stop light problem
+# Charlotte Motuzas Lab 9
+# https://github.com/cmotuzas/MotuzasCharlotte_Lab9
 
 # Set up configuration options and special features
 import numpy as np
