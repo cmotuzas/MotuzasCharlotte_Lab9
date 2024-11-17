@@ -6,6 +6,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def traffic_solution(N,L,v_max,nstep,rho_max):
+    '''Function that, given bar length L, number of grid spaces N, max velocity v_max, number of time steps nstep, and maximum density rho_max
+    returns the car number density according to the 1D-wind advection equation. This function returns a grid of density values (rplot) along with a corresponding 
+    x-value vector (xplot), time value vector (tplot), and index vector (iplot) the latter three are for plotting purposes.'''
     #* Select numerical parameters (time step, grid spacing, etc.).
     h = L/N       # Grid spacing for periodic boundary conditions
     tau = h/v_max
@@ -51,7 +54,6 @@ def traffic_solution(N,L,v_max,nstep,rho_max):
         iplot += 1
     return xplot, rplot, tplot, iplot
 
-
 L = 1200
 N = 600
 v_max = 25
@@ -64,7 +66,7 @@ levels = np.linspace(0., 1., num=11) # change num for more or less contours
 ct = plt.contour(xplot, tplot, np.flipud(np.rot90(rplot)), levels) 
 plt.clabel(ct, fmt='%1.2f') 
 plt.xlabel('x')
-plt.ylabel('time')
+plt.ylabel('time (s)')
 plt.title('Density contours')
 plt.show()
 
@@ -76,7 +78,7 @@ for i in range(2):
         ax[i,j].plot(xplot,rplot[:,tstep])
         ax[i,j].set_xlabel('x')
         ax[i,j].set_ylabel('Density $\\rho$')
-        ax[i,j].text(250,0.6,"t = {}s".format((tstep)*(L/N)/v_max))
+        ax[i,j].text(210,0.6,"t = {} s".format((tstep)*(L/N)/v_max))
         ax[i,j].set_ylim([-0.1,1.1])
         fig.suptitle('Snapshots')
         tstep = tstep+500
